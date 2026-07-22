@@ -1,0 +1,532 @@
+/* Custom CSS Variables for Premium Dark Theme */
+:root {
+    --bg-dark: #070a13;
+    --card-bg: rgba(17, 24, 39, 0.6);
+    --card-border: rgba(255, 255, 255, 0.06);
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+    --text-muted: #64748b;
+    --accent: #6366f1;
+    --accent-glow: rgba(99, 102, 241, 0.45);
+    
+    /* Color Palette Options for Notes */
+    --color-lavender-primary: #818cf8;
+    --color-lavender-bg: rgba(129, 140, 248, 0.08);
+    --color-lavender-border: rgba(129, 140, 248, 0.25);
+    
+    --color-emerald-primary: #34d399;
+    --color-emerald-bg: rgba(52, 211, 153, 0.08);
+    --color-emerald-border: rgba(52, 211, 153, 0.25);
+    
+    --color-amber-primary: #fbbf24;
+    --color-amber-bg: rgba(251, 191, 36, 0.08);
+    --color-amber-border: rgba(251, 191, 36, 0.25);
+    
+    --color-sky-primary: #38bdf8;
+    --color-sky-bg: rgba(56, 189, 248, 0.08);
+    --color-sky-border: rgba(56, 189, 248, 0.25);
+    
+    --color-rose-primary: #fb7185;
+    --color-rose-bg: rgba(251, 113, 133, 0.08);
+    --color-rose-border: rgba(251, 113, 133, 0.25);
+
+    --border-radius: 16px;
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Global Reset & Base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Outfit', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background-color: var(--bg-dark);
+    color: var(--text-primary);
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Ambient Background Glow Circles */
+.glass-bg-glow {
+    position: absolute;
+    top: 10%;
+    left: 15%;
+    width: 35vw;
+    height: 35vw;
+    background: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, rgba(129, 140, 248, 0) 70%);
+    filter: blur(80px);
+    z-index: -1;
+    pointer-events: none;
+    animation: pulse 12s infinite alternate;
+}
+
+.glass-bg-glow-secondary {
+    position: absolute;
+    bottom: 15%;
+    right: 10%;
+    width: 40vw;
+    height: 40vw;
+    background: radial-gradient(circle, rgba(251, 113, 133, 0.08) 0%, rgba(129, 140, 248, 0) 70%);
+    filter: blur(100px);
+    z-index: -1;
+    pointer-events: none;
+    animation: pulse 16s infinite alternate-reverse;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1) translate(0, 0); }
+    100% { transform: scale(1.15) translate(40px, -20px); }
+}
+
+/* Scrollbar Customization */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(15, 23, 42, 0.3);
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+/* Layout */
+.app-layout {
+    max-width: 1400px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 2.5rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Header styling */
+.app-header {
+    margin-bottom: 2.5rem;
+    text-align: left;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    padding-bottom: 1.5rem;
+}
+
+.logo-area {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0.5rem;
+}
+
+.logo-icon {
+    font-size: 2rem;
+    background: linear-gradient(135deg, var(--color-lavender-primary), var(--color-rose-primary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: float 4s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-4px); }
+}
+
+#app-title {
+    font-size: 2.25rem;
+    font-weight: 700;
+    letter-spacing: -0.025em;
+    background: linear-gradient(to right, #ffffff, #94a3b8);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.app-subtitle {
+    color: var(--text-secondary);
+    font-size: 1rem;
+    font-weight: 400;
+}
+
+/* Main Grid Layout - Sidebar on Left, Content on Right */
+.app-main {
+    display: grid;
+    grid-template-columns: 380px 1fr;
+    gap: 2.5rem;
+    align-items: start;
+    flex-grow: 1;
+}
+
+@media (max-width: 1024px) {
+    .app-main {
+        grid-template-columns: 1fr;
+    }
+    .app-layout {
+        padding: 1.5rem 1rem;
+    }
+}
+
+/* Glassmorphism Card Container */
+.glass-card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    backdrop-filter: blur(16px) saturate(120%);
+    -webkit-backdrop-filter: blur(16px) saturate(120%);
+    border-radius: var(--border-radius);
+    padding: 1.75rem;
+    box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+}
+
+.section-title {
+    font-size: 1.35rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    letter-spacing: -0.01em;
+}
+
+/* Form Styles */
+#note-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.form-group label {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+/* Inputs */
+input[type="text"], textarea {
+    width: 100%;
+    background: rgba(15, 23, 42, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 10px;
+    padding: 0.85rem 1rem;
+    font-family: inherit;
+    font-size: 0.95rem;
+    color: var(--text-primary);
+    transition: var(--transition-smooth);
+}
+
+input[type="text"]::placeholder, textarea::placeholder {
+    color: var(--text-muted);
+}
+
+input[type="text"]:focus, textarea:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px var(--accent-glow);
+    background: rgba(15, 23, 42, 0.7);
+}
+
+textarea {
+    min-height: 180px;
+    resize: vertical;
+    line-height: 1.5;
+}
+
+/* Custom Color Picker Options */
+.color-picker-container {
+    display: flex;
+    gap: 0.75rem;
+    padding: 0.25rem 0;
+}
+
+.color-option-wrapper {
+    position: relative;
+    cursor: pointer;
+}
+
+.color-option-wrapper input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+.color-dot {
+    display: block;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    transition: var(--transition-smooth);
+    border: 2px solid transparent;
+}
+
+.color-option-wrapper input[type="radio"]:checked + .color-dot {
+    transform: scale(1.15);
+    border-color: #ffffff;
+    box-shadow: 0 0 12px currentColor;
+}
+
+.color-lavender { background-color: var(--color-lavender-primary); color: rgba(129, 140, 248, 0.8); }
+.color-emerald { background-color: var(--color-emerald-primary); color: rgba(52, 211, 153, 0.8); }
+.color-amber { background-color: var(--color-amber-primary); color: rgba(251, 191, 36, 0.8); }
+.color-sky { background-color: var(--color-sky-primary); color: rgba(56, 189, 248, 0.8); }
+.color-rose { background-color: var(--color-rose-primary); color: rgba(251, 113, 133, 0.8); }
+
+.color-dot:hover {
+    transform: scale(1.1);
+}
+
+/* Call to Action Button */
+.submit-btn {
+    background: linear-gradient(135deg, var(--accent), #4f46e5);
+    color: #ffffff;
+    border: none;
+    border-radius: 10px;
+    padding: 0.95rem 1.5rem;
+    font-family: inherit;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    transition: var(--transition-smooth);
+    box-shadow: 0 4px 14px rgba(99, 102, 241, 0.3);
+}
+
+.submit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px var(--accent-glow);
+    filter: brightness(1.1);
+}
+
+.submit-btn:active {
+    transform: translateY(0);
+}
+
+.btn-icon {
+    font-size: 1rem;
+}
+
+/* Notes List Section layout */
+.notes-display-area {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.notes-section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.notes-section-header .section-title {
+    margin-bottom: 0;
+}
+
+.badge {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--text-secondary);
+    padding: 0.35rem 0.85rem;
+    border-radius: 9999px;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+/* Notes Grid (Responsive columns) */
+.notes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+    transition: var(--transition-smooth);
+}
+
+/* Individual Note Card (Interactive glass design) */
+.note-card {
+    display: flex;
+    flex-direction: column;
+    min-height: 220px;
+    border-radius: var(--border-radius);
+    padding: 1.5rem;
+    position: relative;
+    overflow: hidden;
+    transition: var(--transition-smooth);
+    animation: cardAppear 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes cardAppear {
+    from {
+        opacity: 0;
+        transform: translateY(20px) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* Note color themed modifiers */
+.note-card.theme-lavender {
+    background: linear-gradient(135deg, rgba(17, 24, 39, 0.8), var(--color-lavender-bg));
+    border: 1px solid var(--color-lavender-border);
+}
+.note-card.theme-emerald {
+    background: linear-gradient(135deg, rgba(17, 24, 39, 0.8), var(--color-emerald-bg));
+    border: 1px solid var(--color-emerald-border);
+}
+.note-card.theme-amber {
+    background: linear-gradient(135deg, rgba(17, 24, 39, 0.8), var(--color-amber-bg));
+    border: 1px solid var(--color-amber-border);
+}
+.note-card.theme-sky {
+    background: linear-gradient(135deg, rgba(17, 24, 39, 0.8), var(--color-sky-bg));
+    border: 1px solid var(--color-sky-border);
+}
+.note-card.theme-rose {
+    background: linear-gradient(135deg, rgba(17, 24, 39, 0.8), var(--color-rose-bg));
+    border: 1px solid var(--color-rose-border);
+}
+
+.note-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.45);
+}
+
+/* Note Header (Title & Delete trigger) */
+.note-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 0.85rem;
+}
+
+.note-card-title {
+    font-size: 1.15rem;
+    font-weight: 600;
+    line-height: 1.3;
+    color: var(--text-primary);
+    word-break: break-word;
+}
+
+.delete-btn {
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: 0.2rem;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition-smooth);
+}
+
+.delete-btn:hover {
+    color: var(--color-rose-primary);
+    background: rgba(251, 113, 133, 0.1);
+}
+
+/* Note Content text */
+.note-card-body {
+    flex-grow: 1;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: var(--text-secondary);
+    white-space: pre-wrap;
+    word-break: break-word;
+    margin-bottom: 1.25rem;
+}
+
+/* Note Date badge footer */
+.note-card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    border-top: 1px solid rgba(255, 255, 255, 0.04);
+    padding-top: 0.75rem;
+}
+
+.note-date {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+.note-theme-badge {
+    text-transform: capitalize;
+    font-size: 0.7rem;
+    padding: 0.15rem 0.5rem;
+    border-radius: 4px;
+    font-weight: 500;
+}
+
+.theme-lavender .note-theme-badge { background: rgba(129, 140, 248, 0.15); color: var(--color-lavender-primary); }
+.theme-emerald .note-theme-badge { background: rgba(52, 211, 153, 0.15); color: var(--color-emerald-primary); }
+.theme-amber .note-theme-badge { background: rgba(251, 191, 36, 0.15); color: var(--color-amber-primary); }
+.theme-sky .note-theme-badge { background: rgba(56, 189, 248, 0.15); color: var(--color-sky-primary); }
+.theme-rose .note-theme-badge { background: rgba(251, 113, 133, 0.15); color: var(--color-rose-primary); }
+
+/* Empty State Card */
+.empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 4rem 2rem;
+    background: rgba(17, 24, 39, 0.25);
+    border: 1px dashed rgba(255, 255, 255, 0.08);
+    border-radius: var(--border-radius);
+    color: var(--text-secondary);
+}
+
+.empty-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    opacity: 0.5;
+}
+
+.empty-state h3 {
+    font-size: 1.2rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    color: var(--text-primary);
+}
+
+.empty-state p {
+    font-size: 0.9rem;
+    max-width: 320px;
+    color: var(--text-muted);
+}
+
+/* Footer branding */
+.app-footer {
+    margin-top: 4rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    text-align: center;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}

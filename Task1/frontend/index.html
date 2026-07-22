@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="AuraNotes - A beautifully styled, glassmorphic, single-page notes application. Write, organize, and save your notes instantly.">
+    <title>AuraNotes - Your Minimalist Creative Workspace</title>
+    <!-- Google Fonts: Outfit -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="glass-bg-glow"></div>
+    <div class="glass-bg-glow-secondary"></div>
+
+    <div class="app-layout">
+        <header class="app-header">
+            <div class="logo-area">
+                <span class="logo-icon">✦</span>
+                <h1 id="app-title">AuraNotes</h1>
+            </div>
+            <p class="app-subtitle">Capture your thoughts in real-time, beautifully.</p>
+        </header>
+
+        <main class="app-main">
+            <!-- Composition Sidebar -->
+            <section class="composition-sidebar" aria-labelledby="form-heading">
+                <div class="glass-card form-container">
+                    <h2 id="form-heading" class="section-title">New Note</h2>
+                    <form id="note-form" onsubmit="handleFormSubmit(event)">
+                        <div class="form-group">
+                            <label for="note-title">Title</label>
+                            <input 
+                                type="text" 
+                                id="note-title" 
+                                placeholder="Give your note a title..." 
+                                maxlength="100" 
+                                required
+                                autocomplete="off"
+                            >
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="note-content">Note Content</label>
+                            <textarea 
+                                id="note-content" 
+                                placeholder="Write your thoughts down here..." 
+                                required
+                            ></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Choose Note Color</label>
+                            <div class="color-picker-container" id="color-picker" role="radiogroup" aria-label="Note card color">
+                                <label class="color-option-wrapper">
+                                    <input type="radio" name="note-color" value="lavender" checked aria-label="Lavender color">
+                                    <span class="color-dot color-lavender" data-color="lavender"></span>
+                                </label>
+                                <label class="color-option-wrapper">
+                                    <input type="radio" name="note-color" value="emerald" aria-label="Emerald color">
+                                    <span class="color-dot color-emerald" data-color="emerald"></span>
+                                </label>
+                                <label class="color-option-wrapper">
+                                    <input type="radio" name="note-color" value="amber" aria-label="Amber color">
+                                    <span class="color-dot color-amber" data-color="amber"></span>
+                                </label>
+                                <label class="color-option-wrapper">
+                                    <input type="radio" name="note-color" value="sky" aria-label="Sky color">
+                                    <span class="color-dot color-sky" data-color="sky"></span>
+                                </label>
+                                <label class="color-option-wrapper">
+                                    <input type="radio" name="note-color" value="rose" aria-label="Rose color">
+                                    <span class="color-dot color-rose" data-color="rose"></span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <button type="submit" id="save-note-btn" class="submit-btn">
+                            <span>Save Note</span>
+                            <span class="btn-icon">✓</span>
+                        </button>
+                    </form>
+                </div>
+            </section>
+
+            <!-- Notes List Section -->
+            <section class="notes-display-area" aria-labelledby="notes-heading">
+                <div class="notes-section-header">
+                    <h2 id="notes-heading" class="section-title">Saved Notes</h2>
+                    <span id="notes-count" class="badge">0 Notes</span>
+                </div>
+
+                <!-- Empty State -->
+                <div id="empty-state" class="empty-state">
+                    <div class="empty-icon">📝</div>
+                    <h3>No notes yet</h3>
+                    <p>Your thoughts belong here. Write your first note on the left and save it!</p>
+                </div>
+
+                <!-- Grid of Saved Notes -->
+                <div id="notes-grid" class="notes-grid">
+                    <!-- Dynamic note cards will be injected here -->
+                </div>
+            </section>
+        </main>
+
+        <footer class="app-footer">
+            <p>&copy; 2026 AuraNotes. Persisted securely via local SQLite backend.</p>
+        </footer>
+    </div>
+
+    <!-- Frontend logic -->
+    <script src="app.js"></script>
+</body>
+</html>
