@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ProfileCard.io — Premium 3D Profile Card Generator</title>
+  <meta name="description" content="Generate stunning, interactive 3D glassmorphic profile cards. Customize colors, layouts, and themes in real-time. Powered by a robust Express backend.">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Custom Styling -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="theme-cyberpunk">
+  <!-- Interactive Ambient Background -->
+  <div class="bg-glows">
+    <div class="glow-sphere sphere-1"></div>
+    <div class="glow-sphere sphere-2"></div>
+    <div class="glow-sphere sphere-3"></div>
+  </div>
+
+  <div class="app-container">
+    <!-- Header Section -->
+    <header class="app-header">
+      <div class="logo-area">
+        <div class="logo-icon">
+          <i class="fa-solid fa-id-card"></i>
+        </div>
+        <div class="logo-text">
+          <h1>ProfileCard<span class="gradient-text">.io</span></h1>
+          <p class="subtitle">Craft your professional identity with 3D glassmorphism</p>
+        </div>
+      </div>
+      
+      <!-- Quick Theme Switcher -->
+      <div class="theme-bar">
+        <label for="theme-select-top">Quick Theme:</label>
+        <div class="select-wrapper">
+          <select id="theme-select-top" class="theme-picker">
+            <option value="cyberpunk" selected>Neon Cyberpunk</option>
+            <option value="sunset">Sunset Glass</option>
+            <option value="emerald">Forest Emerald</option>
+            <option value="royal">Royal Violet</option>
+            <option value="minimalist">Minimalist Light</option>
+          </select>
+        </div>
+      </div>
+    </header>
+
+    <main class="main-content">
+      <!-- Left Panel: Form Input -->
+      <section class="panel-section form-panel">
+        <div class="panel-header">
+          <h2><i class="fa-solid fa-sliders"></i> Customize Your Card</h2>
+          <p>Fill out your details to customize and build a premium digital card.</p>
+        </div>
+
+        <form id="profile-form" class="customization-form" novalidate>
+          <!-- Grid Section 1: Basic Info -->
+          <div class="form-row">
+            <div class="form-group">
+              <label for="input-name">Full Name <span class="required">*</span></label>
+              <div class="input-wrapper">
+                <i class="fa-regular fa-user input-icon"></i>
+                <input type="text" id="input-name" placeholder="e.g. Navya Mani" required minlength="2">
+              </div>
+              <span class="validation-msg" id="msg-name">Name is required (min 2 chars).</span>
+            </div>
+            
+            <div class="form-group">
+              <label for="input-title">Professional Role <span class="required">*</span></label>
+              <div class="input-wrapper">
+                <i class="fa-solid fa-briefcase input-icon"></i>
+                <input type="text" id="input-title" placeholder="e.g. Senior Software Architect" required minlength="2">
+              </div>
+              <span class="validation-msg" id="msg-title">Job title is required (min 2 chars).</span>
+            </div>
+          </div>
+
+          <!-- Section 2: Contact & Bio -->
+          <div class="form-group">
+            <label for="input-bio">Short Bio</label>
+            <div class="textarea-wrapper">
+              <textarea id="input-bio" rows="3" placeholder="Tell the world about your passions, achievements, or what you are currently building..."></textarea>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="input-email">Email Address</label>
+              <div class="input-wrapper">
+                <i class="fa-regular fa-envelope input-icon"></i>
+                <input type="email" id="input-email" placeholder="e.g. contact@domain.com">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="input-accent">Custom Accent Color</label>
+              <div class="color-picker-wrapper">
+                <input type="color" id="input-accent" value="#ff007f">
+                <span class="color-hex-label" id="color-hex">#ff007f</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Avatar Image Upload / Presets -->
+          <div class="form-group">
+            <label>Profile Image</label>
+            <div class="avatar-select-container">
+              <div class="avatar-presets">
+                <button type="button" class="preset-avatar-btn active" data-url="" title="Auto-generated Identicon">
+                  <i class="fa-solid fa-wand-magic-sparkles"></i>
+                  <span>Auto</span>
+                </button>
+                <button type="button" class="preset-avatar-btn" data-url="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&h=150&q=80">
+                  <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=80&h=80&q=80" alt="Preset 1">
+                </button>
+                <button type="button" class="preset-avatar-btn" data-url="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&h=150&q=80">
+                  <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=80&h=80&q=80" alt="Preset 2">
+                </button>
+                <button type="button" class="preset-avatar-btn" data-url="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=150&h=150&q=80">
+                  <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=80&h=80&q=80" alt="Preset 3">
+                </button>
+                <button type="button" class="preset-avatar-btn" data-url="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=150&h=150&q=80">
+                  <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=80&h=80&q=80" alt="Preset 4">
+                </button>
+              </div>
+              <div class="input-wrapper custom-avatar-url">
+                <i class="fa-solid fa-link input-icon"></i>
+                <input type="url" id="input-avatar-url" placeholder="Or paste custom image URL...">
+              </div>
+            </div>
+          </div>
+
+          <!-- Social Handles -->
+          <div class="socials-group">
+            <label>Social Network Profiles</label>
+            <div class="social-inputs-grid">
+              <div class="social-input-item">
+                <span class="social-prefix"><i class="fa-brands fa-github"></i> github.com/</span>
+                <input type="text" id="input-github" placeholder="username">
+              </div>
+              <div class="social-input-item">
+                <span class="social-prefix"><i class="fa-brands fa-linkedin"></i> linkedin.com/in/</span>
+                <input type="text" id="input-linkedin" placeholder="username">
+              </div>
+              <div class="social-input-item">
+                <span class="social-prefix"><i class="fa-brands fa-x-twitter"></i> x.com/</span>
+                <input type="text" id="input-twitter" placeholder="username">
+              </div>
+            </div>
+          </div>
+
+          <!-- Submit Trigger -->
+          <button type="submit" id="btn-generate" class="submit-button">
+            <span class="btn-text">Generate Profile Card</span>
+            <span class="btn-glow"></span>
+            <span class="btn-loader hidden"><i class="fa-solid fa-circle-notch fa-spin"></i> Processing...</span>
+          </button>
+        </form>
+      </section>
+
+      <!-- Right Panel: Card & Meta Preview -->
+      <section class="panel-section preview-panel">
+        <div class="panel-header">
+          <h2><i class="fa-solid fa-eye"></i> Live Interactive Preview</h2>
+          <p>Hover and move your cursor over the card to experience the dynamic 3D tilt.</p>
+        </div>
+
+        <!-- 3D Perspective Wrapper -->
+        <div class="card-scene" id="card-scene">
+          <!-- Placeholder State -->
+          <div class="card-placeholder" id="preview-placeholder">
+            <div class="pulse-ring"></div>
+            <div class="placeholder-content">
+              <div class="placeholder-icon"><i class="fa-solid fa-id-card-clip"></i></div>
+              <h3>Ready to Create</h3>
+              <p>Enter your details and click the generate button to see your design come to life here.</p>
+            </div>
+          </div>
+
+          <!-- Dynamic Profile Card (Hidden Initially) -->
+          <div class="profile-card hidden" id="interactive-card">
+            <div class="card-border-glow"></div>
+            
+            <div class="card-inner">
+              <!-- Card Header Badge & Verification -->
+              <div class="card-top-row">
+                <span class="card-badge" id="card-badge-val">Rising Star</span>
+                <span class="card-verify-badge" id="card-verify-val">
+                  <i class="fa-solid fa-shield-halved"></i> Verified
+                </span>
+              </div>
+
+              <!-- Main Card Content -->
+              <div class="card-main-info">
+                <div class="avatar-frame">
+                  <img id="card-avatar" src="" alt="User Avatar">
+                  <div class="avatar-glow"></div>
+                </div>
+                
+                <h3 class="card-name" id="card-name-val">John Doe</h3>
+                <p class="card-title" id="card-title-val">Creative Director</p>
+                <div class="card-divider"></div>
+                <p class="card-bio" id="card-bio-val">This is where your short bio will be displayed. Write something interesting!</p>
+              </div>
+
+              <!-- Contact & Social Footer -->
+              <div class="card-footer">
+                <div class="card-contact" id="card-contact-val">
+                  <i class="fa-regular fa-envelope"></i> <span id="card-email-val">hello@workspace.com</span>
+                </div>
+                <div class="card-socials" id="card-socials-container">
+                  <!-- Dynamic Social Buttons will go here -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Meta Analytics Panel (Hidden Initially) -->
+        <div class="meta-panel hidden" id="meta-panel">
+          <div class="meta-section-title">
+            <span>Backend Analytics & Utilities</span>
+            <div class="badge-pill">Processed</div>
+          </div>
+
+          <div class="analytics-grid">
+            <div class="analytic-card">
+              <div class="analytic-icon"><i class="fa-solid fa-chart-pie"></i></div>
+              <div class="analytic-details">
+                <span class="analytic-label">Profile Strength</span>
+                <span class="analytic-value" id="meta-completeness">85%</span>
+                <div class="progress-bar-container">
+                  <div class="progress-bar-fill" id="meta-progress-bar" style="width: 85%;"></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="analytic-card">
+              <div class="analytic-icon"><i class="fa-regular fa-clock"></i></div>
+              <div class="analytic-details">
+                <span class="analytic-label">Bio Read Time</span>
+                <span class="analytic-value" id="meta-read-time">~3s</span>
+              </div>
+            </div>
+
+            <div class="analytic-card">
+              <div class="analytic-icon"><i class="fa-solid fa-fingerprint"></i></div>
+              <div class="analytic-details">
+                <span class="analytic-label">Unique Card ID</span>
+                <span class="analytic-value code-font" id="meta-id">prof_ab73c9f</span>
+              </div>
+            </div>
+
+            <div class="analytic-card">
+              <div class="analytic-icon"><i class="fa-regular fa-calendar-check"></i></div>
+              <div class="analytic-details">
+                <span class="analytic-label">Created At</span>
+                <span class="analytic-value" id="meta-created">Jun 16, 2026</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Utility Actions -->
+          <div class="action-buttons">
+            <button type="button" class="action-btn" id="btn-copy-html" title="Copy Card CSS/HTML to Clipboard">
+              <i class="fa-regular fa-copy"></i> Copy HTML Card
+            </button>
+            <button type="button" class="action-btn" id="btn-copy-data" title="Copy Raw Processed JSON data">
+              <i class="fa-solid fa-code"></i> Copy JSON Data
+            </button>
+          </div>
+        </div>
+      </main>
+
+      <!-- History Section -->
+      <section class="history-section hidden" id="history-section">
+        <div class="section-title-wrapper">
+          <h3><i class="fa-solid fa-history"></i> Card Generation History</h3>
+          <button type="button" class="clear-btn" id="btn-clear-history"><i class="fa-regular fa-trash-can"></i> Clear All</button>
+        </div>
+        <div class="history-list-grid" id="history-list">
+          <!-- Dynamic History Cards will render here -->
+        </div>
+      </section>
+  </div>
+
+  <!-- Footer -->
+  <footer class="app-footer-bar">
+    <p>ProfileCard.io &copy; 2026. Made with Vanilla HTML/CSS/JS and Node/Express backend.</p>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="app.js"></script>
+</body>
+</html>
