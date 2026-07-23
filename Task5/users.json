@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "name": "Ava Patel",
+    "role": "Frontend Engineer",
+    "available": true
+  },
+  {
+    "id": 2,
+    "name": "Noah Kim",
+    "role": "Backend Engineer",
+    "available": true
+  },
+  {
+    "id": 3,
+    "name": "Mina Chen",
+    "role": "Product Designer",
+    "available": false
+  },
+  {
+    "id": 4,
+    "name": "Liam Brooks",
+    "role": "QA Lead",
+    "available": true
+  }
+]
